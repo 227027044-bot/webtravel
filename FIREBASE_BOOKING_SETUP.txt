@@ -1,0 +1,16 @@
+TRAVELEASE FIREBASE BOOKING UPDATE
+
+1. Keep firebase.js with your existing Firebase configuration.
+2. Replace the files in this folder with these updated versions.
+3. In Firebase Console > Firestore Database > Rules, publish the contents of FIRESTORE_RULES.txt.
+4. Keep Email/Password authentication enabled.
+5. Run the site using VS Code Live Server (do not open HTML files directly).
+6. Sign in, search a journey, select seats, enter passenger details, then confirm the demo booking.
+7. Test duplicate-seat prevention using a second account or browser: booked seats for the same route/date/transport should be disabled.
+8. My Bookings reads only the signed-in user's bookings.
+
+IMPORTANT:
+- Booking and seat documents are created atomically in a Firestore transaction. If any selected seat has already been taken, the transaction is rejected.
+- The payment page is a demonstration only. It records a demo payment reference and does not process or verify real money.
+- Do not use test/open Firestore rules in a deployed project.
+- A real commercial booking/payment system should perform payment verification and booking creation on a trusted backend (for example Cloud Functions/Cloud Run), not trust browser-submitted fares or payment references.

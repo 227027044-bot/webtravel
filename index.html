@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelEase - Smart Travel Booking</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            <i class="fa-solid fa-plane-departure"></i>
+            TravelEase
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#services">Services</a>
+            <a href="mybookings.html">My Bookings</a>
+        </nav>
+
+        <div class="nav-buttons">
+            <a href="login.html" class="login-btn">Login</a>
+            <a href="register.html" class="signup-btn">Sign Up</a>
+        </div>
+
+    </header>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Explore The World
+                <span>With TravelEase</span>
+            </h1>
+
+            <p>
+                Plan your journey easily. Compare buses, trains and flights
+                and find the best travel option for your trip.
+            </p>
+
+            <a href="#booking" class="hero-btn">
+                Start Your Journey
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- BOOKING SECTION -->
+
+    <section class="booking-section" id="booking">
+
+        <div class="section-heading">
+
+            <h2>Book Your Journey</h2>
+
+            <p>
+                Enter your travel details and discover the best options.
+            </p>
+
+        </div>
+
+
+        <!-- TRANSPORT SELECTION -->
+
+        <div class="transport-options">
+
+            <button type="button" class="transport-btn active" data-mode="Bus"
+                onclick="selectTransport('Bus', this)">
+
+                <i class="fa-solid fa-bus"></i>
+                Bus
+
+            </button>
+
+
+            <button type="button" class="transport-btn" data-mode="Train"
+                onclick="selectTransport('Train', this)">
+
+                <i class="fa-solid fa-train"></i>
+                Train
+
+            </button>
+
+
+            <button type="button" class="transport-btn" data-mode="Flight"
+                onclick="selectTransport('Flight', this)">
+
+                <i class="fa-solid fa-plane"></i>
+                Flight
+
+            </button>
+
+        </div>
+
+
+        <!-- BOOKING FORM -->
+
+        <form id="searchForm" class="booking-form">
+
+            <div class="form-group">
+
+                <label for="from">
+                    <i class="fa-solid fa-location-dot"></i>
+                    From
+                </label>
+
+                <input type="text" id="from" list="locations"
+                    placeholder="Enter departure city" required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="to">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                    To
+                </label>
+
+                <input type="text" id="to" list="locations"
+                    placeholder="Enter destination city" required>
+
+            </div>
+
+
+            <datalist id="locations">
+
+                <option value="Chennai">
+                <option value="Coimbatore">
+                <option value="Madurai">
+                <option value="Trichy">
+                <option value="Thanjavur">
+                <option value="Kumbakonam">
+                <option value="Bangalore">
+                <option value="Hyderabad">
+                <option value="Mumbai">
+                <option value="Delhi">
+                <option value="Kochi">
+                <option value="Ooty">
+
+            </datalist>
+
+
+            <div class="form-group">
+
+                <label for="journeyDate">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    Journey Date
+                </label>
+
+                <input type="date" id="journeyDate" required>
+
+            </div>
+
+
+            <button type="submit" class="search-btn">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Search Journey
+
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- OUR TRAVEL SERVICES SECTION -->
+
+    <section class="services-section" id="services">
+
+        <div class="section-heading">
+
+            <h2>Our Travel Services</h2>
+
+            <p>
+                Everything you need for a comfortable journey.
+            </p>
+
+        </div>
+
+
+        <div class="services-container">
+
+
+            <!-- BUS SERVICE -->
+
+            <div class="service-card">
+
+                <img src="image/bus.jpg"
+                     alt="Bus Travel"
+                     class="service-image">
+
+                <h3>Bus Booking</h3>
+
+                <p>
+                    Find and book comfortable bus journeys
+                    at affordable prices.
+                </p>
+
+            </div>
+
+
+            <!-- TRAIN SERVICE -->
+
+            <div class="service-card">
+
+                <img src="image/train.jpg"
+                     alt="Train Travel"
+                     class="service-image">
+
+                <h3>Train Booking</h3>
+
+                <p>
+                    Explore train options and choose
+                    your preferred journey.
+                </p>
+
+            </div>
+
+
+            <!-- FLIGHT SERVICE -->
+
+            <div class="service-card">
+
+                <img src="image/flight.jpg"
+                     alt="Flight Travel"
+                     class="service-image">
+
+                <h3>Flight Booking</h3>
+
+                <p>
+                    Discover flight options and plan
+                    your trip conveniently.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- WELCOME SECTION -->
+
+    <section class="welcome-section">
+
+        <div class="welcome-content">
+
+            <h2>Ready to Start Your Journey?</h2>
+
+            <p>
+                Create an account to enjoy a better travel booking experience.
+                You can also continue as a guest.
+            </p>
+
+            <div class="welcome-buttons">
+
+                <button type="button" onclick="goToRegister()">
+                    Create Account
+                </button>
+
+                <button type="button" onclick="continueAsGuest()">
+                    Continue as Guest
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <div class="footer-logo">
+
+                <h2>
+                    <i class="fa-solid fa-plane-departure"></i>
+                    TravelEase
+                </h2>
+
+                <p>
+                    Making every journey simple, smart and comfortable.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h3>Quick Links</h3>
+
+                <a href="index.html">Home</a>
+                <a href="#services">Services</a>
+                <a href="login.html">Login</a>
+
+            </div>
+
+
+            <div class="footer-contact">
+
+                <h3>Contact Us</h3>
+
+                <p>
+                    <i class="fa-solid fa-envelope"></i>
+                    support@travelease.com
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-phone"></i>
+                    +91 98765 43210
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 TravelEase. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+
+    <!-- GLOBAL NAVIGATION FUNCTIONS -->
+
+    <script>
+
+        function goToRegister() {
+            window.location.href = "register.html";
+        }
+
+    </script>
+
+</body>
+
+</html>

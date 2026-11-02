@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelEase - My Bookings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <h2>TravelEase</h2>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="recommendations.html">Recommendations</a>
+        <a href="profile.html">Profile</a>
+    </nav>
+</header>
+
+<main class="page-container">
+    <h1>My Bookings</h1>
+
+    <div class="card">
+        <h3>Booking History</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Date</th>
+                    <th>Transport</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody id="bookingTable">
+                <tr>
+                    <td colspan="7">No bookings available.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<script type="module">
+import { auth, db } from "./firebase.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
+import { collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
+
+const tbody = document.getElementById("bookingTable");
+onAuthStateChanged(auth, async user => {
+    if (!user) {
+        tbody.innerHTML = '<tr><td colspan="7">Please log in to view your bookings.</td></tr>';
+        return;
+    }
+    try {
+        const q = query(collection(db, "bookings"), where("userId", "==", user.uid));
+        const snapshot = await getDocs(q);
+        if (snapshot.empty) {
+            tbody.innerHTML = '<tr><td colspan="7">No bookings available.</td></tr>';
+            return;
+        }
+        tbody.innerHTML = "";
+        snapshot.forEach(docSnap => {
+            const b = docSnap.data();
+            const row = document.createElement("tr");
+            const values = [
+                b.bookingId || docSnap.id, b.source || "", b.destination || "",
+                b.date || b.journeyDate || "", b.transportName || b.transport || "",
+                "₹" + Number(b.amount || 0).toLocaleString("en-IN"), b.status || "Confirmed"
+            ];
+            values.forEach(value => {
+                const td = document.createElement("td");
+                td.textContent = value;
+                row.appendChild(td);
+            });
+            tbody.appendChild(row);
+        });
+    } catch (error) {
+        console.error(error);
+        tbody.innerHTML = '<tr><td colspan="7">Unable to load bookings. Check Firestore Rules.</td></tr>';
+    }
+});
+</script>
+</body>
+</html>

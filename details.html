@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelEase - Transport Details</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <h2>TravelEase</h2>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="mybookings.html">My Bookings</a>
+    </nav>
+
+</header>
+
+
+<main class="page-container">
+
+    <h1>Transport Details</h1>
+
+    <div class="card">
+
+        <h2 id="transportName">Loading...</h2>
+
+        <p>
+            Transport Type:
+            <span id="transportType"></span>
+        </p>
+
+        <p>
+            From:
+            <span id="detailSource"></span>
+        </p>
+
+        <p>
+            To:
+            <span id="detailDestination"></span>
+        </p>
+
+        <p>
+            Departure:
+            <span id="detailDeparture"></span>
+        </p>
+
+        <p>
+            Arrival:
+            <span id="detailArrival"></span>
+        </p>
+
+        <p>
+            Duration:
+            <span id="detailDuration"></span>
+        </p>
+
+        <p>
+            Fare:
+            <span id="detailFare"></span>
+        </p>
+
+        <p>
+            Available Seats:
+            <span id="detailSeats"></span>
+        </p>
+
+        <button onclick="location.href='seat.html'">
+            Select Seats
+        </button>
+
+    </div>
+
+</main>
+
+
+<script src="script.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Get selected transport details
+
+    let transport = {};
+
+    try {
+        transport = JSON.parse(
+            localStorage.getItem("selectedTransport")
+        ) || {};
+    } catch (error) {
+        transport = {};
+    }
+
+
+    // Get journey details
+
+    const source =
+        localStorage.getItem("source") || "";
+
+    const destination =
+        localStorage.getItem("destination") || "";
+
+    const transportName =
+        localStorage.getItem("selectedTransportName") ||
+        transport.name ||
+        "Transport Details";
+
+    const transportType =
+        localStorage.getItem("selectedTransportType") ||
+        transport.type ||
+        "";
+
+    const departure =
+        localStorage.getItem("selectedDeparture") ||
+        transport.departure ||
+        transport.time ||
+        "";
+
+    const arrival =
+        localStorage.getItem("selectedArrival") ||
+        transport.arrival ||
+        "";
+
+    const duration =
+        localStorage.getItem("selectedDuration") ||
+        transport.duration ||
+        "";
+
+    const fare =
+        localStorage.getItem("selectedFare") ||
+        transport.fare ||
+        "";
+
+    const availableSeats =
+        localStorage.getItem("availableSeats") ||
+        transport.availableSeats ||
+        "Not available";
+
+
+    // Display details
+
+    document.getElementById("transportName").textContent =
+        transportName;
+
+    document.getElementById("transportType").textContent =
+        transportType;
+
+    document.getElementById("detailSource").textContent =
+        source || "Not available";
+
+    document.getElementById("detailDestination").textContent =
+        destination || "Not available";
+
+    document.getElementById("detailDeparture").textContent =
+        departure || "Not available";
+
+    document.getElementById("detailArrival").textContent =
+        arrival || "Not available";
+
+    document.getElementById("detailDuration").textContent =
+        duration || "Not available";
+
+    document.getElementById("detailFare").textContent =
+        fare ? "₹" + Number(fare).toLocaleString("en-IN") : "Not available";
+
+    document.getElementById("detailSeats").textContent =
+        availableSeats;
+
+});
+
+</script>
+
+</body>
+</html>
